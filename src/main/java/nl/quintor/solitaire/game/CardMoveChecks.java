@@ -95,7 +95,7 @@ public class CardMoveChecks {
      */
     static boolean opposingColor(Card card1, Card card2){
         // TODO: Write implementation
-
+//test
        if(card1.getSuit() == Suit.DIAMONDS && card2.getSuit() == Suit.HEARTS || card2.getSuit() == Suit.DIAMONDS && card1.getSuit() == Suit.HEARTS ){
            return false;
        }
