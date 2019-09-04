@@ -1,6 +1,7 @@
 package nl.quintor.solitaire.game;
 
 import nl.quintor.solitaire.game.moves.Help;
+import nl.quintor.solitaire.game.moves.Move;
 import nl.quintor.solitaire.game.moves.ex.MoveException;
 import nl.quintor.solitaire.models.card.Card;
 import nl.quintor.solitaire.models.card.Rank;
@@ -45,7 +46,17 @@ public class CardMoveChecks {
      * @throws MoveException on illegal move
      */
     public static void deckLevelChecks(Deck sourceDeck, int sourceCardIndex, Deck destinationDeck) throws MoveException {
-        // TODO: Write implementation
+        if(sourceDeck == destinationDeck)
+            throw new MoveException("Move source and destination can't be the same");
+        else if( sourceDeck.isEmpty())
+            throw new MoveException("You can\'t move a card from an empty deck");
+        else if( destinationDeck.getDeckType() == DeckType.STOCK)
+            throw new MoveException("You can\'t move cards to the stock");
+        else if(sourceDeck.getInvisibleCards() > 0)
+            throw new MoveException("You can\'t move an invisible card");
+        else if(destinationDeck.getDeckType() == DeckType.STACK && sourceCardIndex != sourceDeck.size()-1)
+            throw new MoveException("You can\'t move more than 1 card at a time to a Stack Pile");
+
     }
 
     /**
